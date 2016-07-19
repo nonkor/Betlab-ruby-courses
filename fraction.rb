@@ -1,17 +1,61 @@
+
 class Fraction
-  def initialize(numerator, denominator)
-    if !(numerator.is_a?(Integer) && denominator.is_a?(Integer))
-      # TODO: create a proper exception for that issue
-      # TODO: handle case when one or both parameters are not Integer but could be easily transformed into it
-      # by using #to_i
-      raise 'At least some arguments are incorrect: ' + numerator.inspect + ', ' + denominator.inspect
+  def check_fraction(numerator, denominator)
+    if ! numerator.is_a?(Integer) && (denominator.is_a?(Integer) && denominator>0)
+      raise 'these are supposed to be numbers: '+numerator.inspect+' '+ denominator.inspect
     end
+  end
+
+  def initialize(numerator, denominator)
+    check_fraction(numerator, denominator)
     @numerator = numerator
     @denominator = denominator
   end
+
+  def numerator
+    @numerator
+  end
+
+  def denominator
+    @denominator
+  end
+
+  def simplify
+    Fraction.new(@numerator / @numerator.gcd(@denominator), @denominator / @denominator.gcd(@numerator))
+  end
+
+  def view
+      "#{@numerator}/#{@denominator}"
+  end
+
+  def +(fract)
+    num = @numerator*fract.denominator+fract.numerator*@denominator
+    den = @denominator*fract.denominator
+    Fraction.new(num, den).simplify
+  end
+
+  def *(fract)
+    num = @numerator*fract.numerator
+    den = @denominator*fract.denominator
+    Fraction.new(num, den).simplify
+  end
+
+  def /(fract)
+    num = @numerator*fract.denominator
+    den = @denominator*fract.numerator
+    Fraction.new(num, den).simplify
+  end
+
+  def -(fract)
+    num = @numerator*fract.denominator-fract.numerator*@denominator
+    den = @denominator*fract.denominator
+    Fraction.new(num, den).simplify
+  end
 end
 
-# puts Fraction.new('s_numerator', 's_denominator') #=> fail
-# puts Fraction.new('s_numerator', 1) #=> fail
-# puts Fraction.new(2, '1') #=> fail
-puts Fraction.new(1, 2) #=> ok
+
+fraction1 = Fraction.new(3,12)
+fraction2 = Fraction.new(221,663)
+
+puts (fraction1-fraction2).view
+
