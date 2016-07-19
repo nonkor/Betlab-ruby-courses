@@ -1,10 +1,13 @@
+
 class Fraction
-  def initialize(numerator, denominator)
-    if ! numerator.is_a?(Integer) && denominator.is_a?(Integer)
-      # TODO: Proper execption for this issue
-      # TODO: Handle case when one or both parameters are not int but could be easily transformed to int
+  def check_fraction(numerator, denominator)
+    if ! numerator.is_a?(Integer) && (denominator.is_a?(Integer) && denominator>0)
       raise 'these are supposed to be numbers: '+numerator.inspect+' '+ denominator.inspect
     end
+  end
+
+  def initialize(numerator, denominator)
+    check_fraction(numerator, denominator)
     @numerator = numerator
     @denominator = denominator
   end
@@ -18,47 +21,41 @@ class Fraction
   end
 
   def simplify
-
-=begin
-     if @numerator > @denominator then b=@denominator else b=@numerator
-    end
-    end
-
-    while b>1
-     if (@numerator%b == 0 and @denominator%b == 0)
-       @denominator = @denominator /b
-       @numerator = @numerator /b
-     end
-      b=b-1
-=end
     Fraction.new(@numerator / @numerator.gcd(@denominator), @denominator / @denominator.gcd(@numerator))
   end
 
   def view
-      puts "#{@numerator}/#{@denominator}"
+      "#{@numerator}/#{@denominator}"
   end
 
-  def +(a)
-    Fraction.new(@numerator*a.denominator+a.numerator*@denominator, @denominator*a.denominator).simplify
+  def +(fract)
+    num = @numerator*fract.denominator+fract.numerator*@denominator
+    den = @denominator*fract.denominator
+    Fraction.new(num, den).simplify
   end
 
-  def *(a)
-    Fraction.new(@numerator = @numerator*a.numerator, @denominator = @denominator*a.denominator).simplify
+  def *(fract)
+    num = @numerator*fract.numerator
+    den = @denominator*fract.denominator
+    Fraction.new(num, den).simplify
   end
 
-  def /(a)
-    Fraction.new(@numerator*a.denominator, @denominator*a.numerator).simplify
+  def /(fract)
+    num = @numerator*fract.denominator
+    den = @denominator*fract.numerator
+    Fraction.new(num, den).simplify
   end
 
-  def -(a)
-    simplify
-    a.simplify
-    Fraction.new(@numerator*a.denominator-a.numerator*@denominator, @denominator*a.denominator).simplify
+  def -(fract)
+    num = @numerator*fract.denominator-fract.numerator*@denominator
+    den = @denominator*fract.denominator
+    Fraction.new(num, den).simplify
   end
 end
 
 
-fraction1 = Fraction.new(9,12)
+fraction1 = Fraction.new(3,12)
 fraction2 = Fraction.new(221,663)
 
-(fraction1-fraction2).view
+puts (fraction1-fraction2).view
+
