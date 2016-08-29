@@ -1,26 +1,23 @@
 module M
+
   module SingletonMethods
     def singleton_method
-      p Foo.singleton_methods
-    end
-  end
-  module InstanceMethods
-    def instance_method
-      p Foo.instance_methods - Object.instance_methods
     end
   end
 
+  module InstanceMethods
+    def inst_method
+    end
+  end
 
   def self.included(base)
-    base.extend SingletonMethods
     base.include InstanceMethods
-    Foo.singleton_method
-    Foo.new.instance_method
+    base.extend SingletonMethods
+    p base.instance_methods - Object.methods
+    p base.singleton_methods
   end
 end
 
 class Foo
   include M
 end
-
-
