@@ -1,7 +1,9 @@
 module M
 
   def self.included(some)
-  	some.extend(HookModule)
+    some.extend(HookModule)
+    p some.singleton_methods
+    p some.instance_methods - Object.instance_methods
   end
 
   def instance_method
@@ -9,7 +11,7 @@ module M
   end
 
   module HookModule
-  	def metaclass_method
+    def metaclass_method
       'Wow, very meta class method'
     end
   end
@@ -17,9 +19,5 @@ module M
 end
 
 class Foo
-	include M
+  include M
 end
-
-
-p Foo.singleton_methods
-p Foo.instance_methods - Object.instance_methods
