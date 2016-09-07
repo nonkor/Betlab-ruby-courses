@@ -2,7 +2,7 @@
 module MyEach
 
   def my_each
-    return self.to_enum unless block_given?
+    return self.to_enum(:my_each) unless block_given?
     clone = self.clone
     while item = clone.shift
       yield(item)
