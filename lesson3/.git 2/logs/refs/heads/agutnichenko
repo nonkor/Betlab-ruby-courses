@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 0444a6a8199076d8ea8df22cf57abd3e2c2ed50d anna <foraccs@i.ua> 1472461277 +0300	branch: Created from master
+0444a6a8199076d8ea8df22cf57abd3e2c2ed50d 080cfda48e0990db296f787f7f5caa4e09f0f4a9 anna <foraccs@i.ua> 1472461573 +0300	commit: first hometask
+080cfda48e0990db296f787f7f5caa4e09f0f4a9 16848a1d23386dab12dd698a3f7ad12cbb58a532 anna <foraccs@i.ua> 1472467337 +0300	commit: second try
+16848a1d23386dab12dd698a3f7ad12cbb58a532 ccf3a45b86ca67c78fbd79fa3158f90413c5be91 anna <foraccs@i.ua> 1472477477 +0300	commit: one more
+ccf3a45b86ca67c78fbd79fa3158f90413c5be91 8e070ead8d24fe0f39d3e04e926c5f0ceb4b655f anna <foraccs@i.ua> 1473240221 +0300	reset: moving to origin/master
+8e070ead8d24fe0f39d3e04e926c5f0ceb4b655f a165ebce90eff36db93ece7b57e6293abbdc235e anna <foraccs@i.ua> 1473240269 +0300	commit: third hometask
+a165ebce90eff36db93ece7b57e6293abbdc235e a4d5f71e09d6b903dd7dd0b73e5d4ec122efaeb1 anna <foraccs@i.ua> 1473240414 +0300	commit: .gitigonre

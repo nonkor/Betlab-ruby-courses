@@ -17,5 +17,12 @@ class Hash
   include Myeach
 end
 
-[1,2,3].my_each{|i|p i}
-[1=>'1', 2=>'2', 3=>'3'].my_each{|i|p i}
+[1,2,3].my_each{|i| p i}
+# => `puts 1`
+# => `puts 2`
+# => `puts 3`
+
+{0 => '1', 1=>'2', 2=>'3'}.my_each{|i| p i}
+# => `puts "1"`
+# => `puts "2"`
+# => `puts "3"`
