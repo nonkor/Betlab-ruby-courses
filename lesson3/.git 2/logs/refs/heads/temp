@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 b197c4426cba4d0c40ef6e0562eed3df2c57176c anna <foraccs@i.ua> 1473265399 +0300	branch: Created from master
+b197c4426cba4d0c40ef6e0562eed3df2c57176c b0f843a303c98012c300b89d6492bdaa47f9b390 anna <foraccs@i.ua> 1473265471 +0300	commit: hometask3
+b0f843a303c98012c300b89d6492bdaa47f9b390 8e070ead8d24fe0f39d3e04e926c5f0ceb4b655f yurii.terletskyi <yurii.terletskyi@betlab.com> 1473266126 +0300	reset: moving to head~2
+8e070ead8d24fe0f39d3e04e926c5f0ceb4b655f f50e7f1a24cb868edffa48459f8f4dedd68823b3 yurii.terletskyi <yurii.terletskyi@betlab.com> 1473266187 +0300	commit: temp
+f50e7f1a24cb868edffa48459f8f4dedd68823b3 f50e7f1a24cb868edffa48459f8f4dedd68823b3 yurii.terletskyi <yurii.terletskyi@betlab.com> 1473266209 +0300	Branch: renamed refs/heads/annagutnichenko to refs/heads/temp
