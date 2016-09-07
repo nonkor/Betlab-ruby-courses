@@ -1,6 +1,6 @@
 module MyEach
 
-  # as far we use only Array and Hash i let myself
+  # as far we are using only Array and Hash i let myself
   # make conclusion if not class is not Array, than class is Hash
 
   def my_each
@@ -35,4 +35,4 @@ end
 
 {:wow => 'some', :wow1 => 'some1'}.my_each { |k, v| puts "key = #{k}, val = #{v}" }
 #key = wow, val = some
-#key = wow1, val = some1#
+#key = wow1, val = some1
