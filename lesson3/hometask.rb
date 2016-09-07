@@ -1,23 +1,21 @@
-module MyEach
-  def self.my_each
-    while true
-      yield
+module Myeach
+  def my_each
+    i = 0
+    while i < self.size
+      yield(self[i])
+      i+=1
     end
+    self
   end
-
- my_each do |i|
-    p i
-  end
-
 end
 
 class Array
-  include MyEach
-
-  [1, 2, 3].my_each
+  include Myeach
 end
 
 class Hash
-  include MyEach
-  {1 => '1', 2 => '2'}
+  include Myeach
 end
+
+[1,2,3].my_each{|i|p i}
+[1=>'1', 2=>'2', 3=>'3'].my_each{|i|p i}
