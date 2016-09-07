@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="418fa240-b43f-44d7-8423-02c3cbbc879a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lesson3/hometask3.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/git.ignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Betlab-ruby-courses.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,6 +29,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="git.ignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/git.ignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="hometask.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lesson2/hometask.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -38,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hometask3.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hometask3.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lesson3/hometask3.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -69,6 +80,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/lesson3/hometask.rb" />
         <option value="$PROJECT_DIR$/lesson2/hometask.rb" />
+        <option value="$PROJECT_DIR$/lesson3/hometask3.rb" />
       </list>
     </option>
   </component>
@@ -470,6 +482,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lesson3/hometask3.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git.ignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
