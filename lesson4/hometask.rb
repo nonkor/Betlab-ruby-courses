@@ -55,11 +55,12 @@ class LazyHashDelegator < SimpleDelegator
 
   def []=(key, value)
     raise ArgumentError, 'Unable to symbolize key!' unless key.respond_to?(:to_sym)
-    super(key.to_sym, value)
-    unless self.__getobj__.respond_to?(key.to_sym)
-      define_singleton_method(key.to_sym) do
-        obj = self.__getobj__[key]
-        obj.is_a?(Proc) ? self.__getobj__[key] = obj.call : obj
+    key = key.to_sym
+    super(key, value)
+    unless self.respond_to?(key)
+      define_singleton_method(key) do
+        obj = self[key]
+        obj.is_a?(Proc) ? self[key] = obj.call : obj
       end
     end
   end
@@ -70,7 +71,7 @@ class LazyHashDelegator < SimpleDelegator
   end
 
   def lazy?(key)
-    self.__getobj__[key].is_a?(Proc)
+    self[key].is_a?(Proc)
   end
 end
 
