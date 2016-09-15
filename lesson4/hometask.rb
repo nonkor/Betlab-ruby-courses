@@ -51,18 +51,14 @@ require 'delegate'
 class LazyHashDelegator < SimpleDelegator
   def initialize(initial_hash = {})
     self.__setobj__(initial_hash)
+    initial_hash.each_key { |key| create_accessor(key) }
   end
 
   def []=(key, value)
     raise ArgumentError, 'Unable to symbolize key!' unless key.respond_to?(:to_sym)
     key = key.to_sym
     super(key, value)
-    unless self.respond_to?(key)
-      define_singleton_method(key) do
-        obj = self[key]
-        obj.is_a?(Proc) ? self[key] = obj.call : obj
-      end
-    end
+    create_accessor(key)
   end
 
   def [](key)
@@ -72,6 +68,16 @@ class LazyHashDelegator < SimpleDelegator
 
   def lazy?(key)
     self[key].is_a?(Proc)
+  end
+
+  private
+  def create_accessor(key)
+    unless self.respond_to?(key)
+      define_singleton_method(key) do
+        obj = self[key]
+        obj.is_a?(Proc) ? self[key] = obj.call : obj
+      end
+    end
   end
 end
 
