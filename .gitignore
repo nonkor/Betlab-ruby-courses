@@ -1,0 +1,18 @@
+syntax: glob
+Gemfile.lock
+
+# RubyMine files
+.idea/
+#MAC OS file
+.DS_Store
+#Local bundler
+config.yml
+#screenshots and html pages
+*.jpg
+*.png
+*.html
+*.txt
+*.log
+*.xlsx
+*.orig
+
