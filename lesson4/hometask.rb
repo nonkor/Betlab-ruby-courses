@@ -14,7 +14,6 @@ class LazyHash < Hash
 end
 
 hash = LazyHash.new
-
 hash[:str] = '123'
 hash[:proc] = proc {
   puts 'You should see the text only once, however that tricky numbers below should display twice'
