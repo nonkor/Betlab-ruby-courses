@@ -9,17 +9,18 @@ class LazyHash < Hash
   end
 
   def lazy? method_name
-     fetch(method_name).instance_of? Proc
-    end
+    fetch(method_name).instance_of? Proc
+  end
+
 end
 
 
 a = LazyHash.new
 a[:b] = Proc.new { 12 }
- puts a[:b]
- puts a.lazy? :b
- puts a.b
- puts a.lazy? :b
+puts a[:b]
+puts a.lazy? :b
+puts a.b
+puts a.lazy? :b
 
 
 
