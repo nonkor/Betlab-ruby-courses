@@ -1,19 +1,15 @@
 class LazyHash < Hash
 
   def method_missing(method_name)
-    self[method_name] = fetch(method_name).call
+    self[method_name] = fetch(method_name).call if fetch(method_name).is_a? Proc
   end
 
-  def respond_to_missing?(method_name, include_private = false)
-    if fetch(method_name)
-      true
-    else
-      false
-    end
+  def respond_to_missing?(method_name)
+    self.has_key? method_name
   end
 
   def lazy? method_name
-    fetch(method_name).instance_of? Proc
+    fetch(method_name).is_a? Proc
   end
 
 end
