@@ -7,24 +7,30 @@
 #
 #       подсказка: внутри модуля M можно создавать подмодули.
 
+
 module M
+
   def self.included(base)
-    base.extend(M2)
-    puts "Extended methods for Foo metaclass #{base.methods - Object.methods}"
+    base.include MetaclassInstanceMethods
+    base.extend MetaclassMethods
+    puts "Instance methods #{base.instance_methods - Object.methods}"
+    puts "Metaclass methods #{base.singleton_methods}"
   end
 
-
-  def object_method
-  end
-
-  module M2
-    def self.extended(base)
-      puts "Included methods for instance #{base.new.methods - Object.methods}"
-    end
+  module MetaclassInstanceMethods
 
     def class_method
     end
+
   end
+
+  module MetaclassMethods
+
+    def metaclass_method
+    end
+
+  end
+
 end
 
 
