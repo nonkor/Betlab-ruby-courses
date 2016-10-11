@@ -24,4 +24,3 @@ class Foo
 end
 
 f = Foo.new
-
