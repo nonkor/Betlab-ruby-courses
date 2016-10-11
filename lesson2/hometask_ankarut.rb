@@ -7,24 +7,21 @@ module M
   end
 
   module A
-  def method_one
-    puts "Hello from method_one"
-  end
+    def method_one
+      puts "Hello from method_one"
+    end
   end
 
   module B
-  def method_two
-    puts "Hello from method_two"
+    def method_two
+      puts "Hello from method_two"
+    end
   end
-  end
-
 end
 
 class Foo
   include M
 end
 
-
 f = Foo.new
-Foo.method_one
-f.method_two
+
