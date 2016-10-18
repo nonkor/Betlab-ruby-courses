@@ -2,12 +2,14 @@ module MyEach
 
   def my_each
     if block_given?
+      new_array = []
       current_number = self.count
       while current_number > 0
-        yield self[current_number - 1]
+        new_array << yield(self[current_number - 1])
         current_number -= 1
       end
     end
+    p new_array.reverse!
   end
 
 end
