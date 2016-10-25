@@ -3,11 +3,14 @@ Gemfile.lock
 
 # RubyMine files
 .idea/
-#MAC OS file
+
+# MAC OS file
 .DS_Store
-#Local bundler
+
+# Local bundler
 config.yml
-#screenshots and html pages
+
+# screenshots and html pages
 *.jpg
 *.png
 *.html
@@ -15,4 +18,3 @@ config.yml
 *.log
 *.xlsx
 *.orig
-
