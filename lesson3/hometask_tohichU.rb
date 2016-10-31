@@ -23,3 +23,10 @@ end
 [1, 2, 3, 4].my_each { |i| puts "Array item: #{i}" }
 
 {a => 1, b => 2}.my_each { |key, value| puts "Hash key: #{key}: Value #{value}" }
+
+
+
+
+
+
+
