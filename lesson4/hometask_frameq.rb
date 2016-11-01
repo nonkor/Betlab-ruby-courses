@@ -1,16 +1,15 @@
 class LazyHash < Hash
   def method_missing(name)
     key = name.to_s
-    super.method_missing(key) unless self.key?(key)
-    if self[key].class == Proc
+    super(name) unless self.key?(key)
+    if self[key].respond_to?(:call)
       self[key] = self[key].call
-      self[key]
     end
     self[key]
   end
 
   def lazy?(key)
-    self[key.to_s].class == Proc ? true : false
+    self[key.to_s].respond_to?(:call)
   end
 end
 
