@@ -1,5 +1,5 @@
 class Foo
-  instance_eval do |var|
+  instance_eval do |_context| # this var points to self, in our case Foo
     def bar(var)
       'try' << var
     end
