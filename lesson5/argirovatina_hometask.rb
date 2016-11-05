@@ -1,40 +1,42 @@
 class LazyHash < Hash
 
-  attr_accessor :hash_new
-
-  def initialize(hash=nil)
-    @hash_new = hash
-  end
-
   def lazy?(key)
-    self[key.to_s].respond_to? :call
+    self[key].respond_to? :call
   end
 
-  class_eval do
-  def []=(k, v)
-    define_method(k) do
-      self[k.to_s] = self[k.to_s].call
+  def []=(key, value)
+    unless self.respond_to? key
+      define_singleton_method(key) do
+        value.respond_to?(:call) ? result = value.call : value
+        self[key] = result
+      end
     end
+    super
   end
+
+  def self.[](key, value)
+    unless self.respond_to? key
+      define_method(key) do
+        value.respond_to?(:call) ? result = value.call : value
+        self[key] = result
+      end
     end
+    super
+  end
+
 end
+
 ########## EXAMPLES ###################
-proc = proc { |h, k| h[k] = k*k }
-proc_2 = proc { 2*2 }
+proc_2 = proc { 3*3 }
 hash = LazyHash.new
 
-# hash['proc_key'] = proc
-# p hash['proc_key']
-# p hash.lazy?('proc_key')
-# p hash.proc_key
-# p hash['proc_key']
-# p hash.lazy?('proc_key')
-# p hash.respond_to? :proc_key
+p hash[:proc_key_2] = proc_2 # => <Proc:0x007fc7bd0b7f98@/Users/kristina/Betlab-ruby-courses/lesson5/argirovatina_hometask.rb>
+p hash[:proc_key_2] # => <Proc:0x007fc7bd0b7f98@/Users/kristina/Betlab-ruby-courses/lesson5/argirovatina_hometask.rb>
+p hash.lazy? :proc_key_2 # => true
+p hash.proc_key_2 # => 9
+p hash[:proc_key_2] # => 9
+p hash.lazy? :proc_key_2 # => false
 
-hash['proc_key_2'] = proc_2
-p hash['proc_key_2']
-#p hash.lazy?('proc_key_2')
-p hash.proc_key_2
-p hash['proc_key_2']
-#p hash.lazy?('proc_key_2')
-#p hash.respond_to? :proc_key_2
+my_proc = proc { 2+2 }
+hash = LazyHash[ :my_key, my_proc ]
+p hash.my_key # => 4
