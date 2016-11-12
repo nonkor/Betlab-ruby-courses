@@ -1,5 +1,4 @@
 class Foo
-
   def initialize(uniq = :not_uniq)
     @@instance_num ||= 0
     @@instance_num += 1
@@ -11,7 +10,6 @@ class Foo
     return ":uniq" if @uniq == :uniq
     @instance_num.even? ? ":even" : ":odd"
   end
-
 end
 
 instances = []
@@ -24,4 +22,3 @@ end
 
 instances.each {|instance| puts instance.my_instance}
 puts uniq_instance.my_instance
-
