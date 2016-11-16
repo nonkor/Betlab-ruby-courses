@@ -1,14 +1,15 @@
 class Foo
+
   def initialize(uniq = :not_uniq)
-    @@instance_num ||= 0
-    @@instance_num += 1
-    @instance_num = @@instance_num
+    @@counter ||= 0
+    @@counter += 1
+    @instance_num = @@counter
     @uniq = uniq
   end
 
   def my_instance
-    return ":uniq" if @uniq == :uniq
-    @instance_num.even? ? ":even" : ":odd"
+    return :uniq if @uniq == :uniq
+    @instance_num.even? ? :even : :odd
   end
 end
 
@@ -20,5 +21,13 @@ for i in 0..5
   instances.push Foo.new
 end
 
-instances.each {|instance| puts instance.my_instance}
+instances.each { |instance| puts instance.my_instance }
 puts uniq_instance.my_instance
+
+# => even
+# => odd
+# => even
+# => odd
+# => even
+# => odd
+# => uniq
