@@ -1,5 +1,4 @@
 module MyEach
-
   def my_each
     object = self.clone.to_a
     index = 0
@@ -9,7 +8,6 @@ module MyEach
     end
     self
   end
-
 end
 
 Array.include MyEach
