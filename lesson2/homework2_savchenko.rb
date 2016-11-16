@@ -1,19 +1,16 @@
 module M
   def self.included(base)
-    base.extend ForMetaClass
+    base.extend N
+    puts Foo.methods - Object.methods # => [:metaclassmethod]
+    puts Foo.instance_methods - Object.methods #  => [:instancemethod]
   end
 
-  def initialize
-    puts Foo.methods - Object.methods # => [:MetaClassMethod]
-    puts self.methods - Object.methods #  => [:InstanceMethod]
-  end
-
-  def InstanceMethod
+  def instancemethod
     puts :Instance
   end
 
-  module ForMetaClass
-    def MetaClassMethod
+  module N
+    def metaclassmethod
       puts :MetaClass
     end
   end
@@ -26,5 +23,5 @@ end
 
 f = Foo.new
 
-Foo.MetaClassMethod # => [:MetaClass]
-f.InstanceMethod # => [:Instance]
+Foo.metaclassmethod # => [:MetaClass]
+f.instancemethod # => [:Instance]
