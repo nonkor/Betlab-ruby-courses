@@ -1,5 +1,4 @@
 class Foo
-
   def initialize(uniq = :not_uniq)
     @@counter ||= 0
     @@counter += 1
@@ -17,9 +16,7 @@ instances = []
 
 uniq_instance = Foo.new(:uniq)
 
-for i in 0..5
-  instances.push Foo.new
-end
+5.times { instances.push Foo.new }
 
 instances.each { |instance| puts instance.my_instance }
 puts uniq_instance.my_instance
