@@ -22,7 +22,12 @@ class LazyHash < Hash
   private
 
   def get_correct_key(hash_key)
-    [hash_key.to_s, hash_key.to_sym].find { |key| self.has_key?(key) }
+    key = [hash_key.to_s, hash_key.to_sym].find { |key| self.has_key?(key) }
+    if key
+      key
+    else
+      raise "Method #{hash_key} is missing"
+    end
   end
 
 end
@@ -38,3 +43,4 @@ p hash.proc_key # => 4
 p hash['proc_key'] # => 4
 p hash.lazy?('proc_key') # => false
 p hash.respond_to? :proc_key # => true
+p hash.proc_key1 # => `get_correct_key': Method proc_key1 is missing (RuntimeError)
