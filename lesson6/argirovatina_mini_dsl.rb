@@ -13,13 +13,10 @@ class UserFactory
   class << self
 
     def method_missing(method, name)
-      if method == :person
-        @file_name = Person.send(name).to_s
-        File.new(@file_name << '.yml', 'w+')
-      end
+      @file_name = Person.send(name).to_s if method == :person
       yield if block_given?
       create_attr_accessor_with(method, name)
-      write_to_file(@file_name, "#{method}: #{name}")
+      write_to_file("#{method}: #{name}")
     end
 
     private
@@ -29,7 +26,8 @@ class UserFactory
       Person.new.send("#{method}=", name)
     end
 
-    def write_to_file(file_name, text)
+    def write_to_file(file_name=@file_name, text)
+      File.new(file_name << '.yml', 'a') unless File.file?(file_name)
       File.open(file_name, 'a') do |file|
         file.write("#{text}\n")
         file.close
