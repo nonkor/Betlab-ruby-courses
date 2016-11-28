@@ -19,8 +19,6 @@ class UserFactory
       write_to_file("#{method}: #{name}")
     end
 
-    private
-
     def create_attr_accessor_with(method, name)
       Person.class_eval { attr_accessor method }
       Person.new.send("#{method}=", name)
@@ -32,6 +30,14 @@ class UserFactory
         file.write("#{text}\n")
         file.close
       end
+    end
+
+    def save!
+
+    end
+
+    def load!
+
     end
   end
 
@@ -47,6 +53,28 @@ class UserFactory
 end
 
 puts Person.nonkor.fullname
+
+
+# class Test
+# end
+#
+# class User
+#
+#   def self.call_method
+#     User.new.method('test', 1)
+#   end
+#
+#   def method(test_val, val)
+#     Test.class_eval { attr_accessor test_val }
+#     Test.new.send("#{test_val}=", val)
+#   end
+#
+# end
+#
+# p User.call_method # => 1
+# p Test.new.test # => nil
+# p Test.new.methods # => [:test, :test=, ......]
+
 
 # у этих объектов может быть 4 свойства только: fullname, sex, age и file.
 #
