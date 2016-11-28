@@ -2,7 +2,7 @@
 module MyEach
 
   def my_each
-    retrun self.method(__method__) unless block_given?
+    return to_enum(:my_each) unless block_given?
     this = self.to_a
     while (i ||= 0) < length
       yield(this[i])
