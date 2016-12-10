@@ -1,12 +1,8 @@
 class LazyHash < Hash
 
   def method_missing(method_name)
-    method_name = get_correct_key(method_name)
-    if self.keys.include? method_name
-      self[method_name] = self[method_name].call
-    else
-      raise "Method #{method_name} is missing"
-    end
+    key = get_correct_key(method_name)
+    self[key] = self[key].call if lazy?(key)
   end
 
   def lazy?(key)
@@ -15,19 +11,14 @@ class LazyHash < Hash
   end
 
   def respond_to_missing?(method_name, include_private = false)
-    method_name = get_correct_key(method_name)
-    self.keys.include? method_name || super
+    get_correct_key(method_name) rescue
+    self.has_key? method_name || super
   end
 
   private
 
   def get_correct_key(hash_key)
-    key = [hash_key.to_s, hash_key.to_sym].find { |key| self.has_key?(key) }
-    if key
-      key
-    else
-      raise "Method #{hash_key} is missing"
-    end
+    [hash_key.to_s, hash_key.to_sym].find { |key| self.has_key?(key) } || raise("Method #{hash_key} is missing")
   end
 
 end
@@ -43,4 +34,6 @@ p hash.proc_key # => 4
 p hash['proc_key'] # => 4
 p hash.lazy?('proc_key') # => false
 p hash.respond_to? :proc_key # => true
-p hash.proc_key1 # => `get_correct_key': Method proc_key1 is missing (RuntimeError)
+#p hash.proc_key1 # => `get_correct_key': Method proc_key1 is missing (RuntimeError)
+hash[:my_key] = proc { 5 }
+p hash.my_key # => 5
