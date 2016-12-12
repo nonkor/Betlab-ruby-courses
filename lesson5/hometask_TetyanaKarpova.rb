@@ -4,21 +4,19 @@ class LazyHash < Hash
   end
 
   def []=(key, value)
-    unless self.has_key? key
-      define_singleton_method(key) do
-        value.is_a?(Proc) ? self[key] = value.call : value
-      end
+    define_singleton_method(key) do
+      value.is_a?(Proc) ? self[key] = value.call : value
     end
     super
   end
 
   def self.[](*params)
-    super.each_pair do |key, value|
-      define_method(key) do
-        value.is_a?(Proc) ? self[key] = value.call : value
-      end
+    hsh = super
+    l_hsh = LazyHash.new
+    hsh.each_pair do |key, value|
+      l_hsh[key] = value
     end
-    super
+    l_hsh
   end
 end
 
@@ -31,6 +29,13 @@ p lazy_h[:k]                         # => "!!!!!"
 p lazy_h.lazy? :k                    # => false
 h = LazyHash[:a, proc {"!"}, :b, 2]
 p h.b                                # => 2
+h[:b] = 3
+p h.b                                # => 3
 p h.lazy? :a                         # => true
 p h.a                                # => "!"
 p h.lazy? :a                         # => false
+h2 = LazyHash.new
+h2[:test] = 1
+p h2.test                            # => 1
+h2[:test] = 2
+p h2.test                            # => 2
