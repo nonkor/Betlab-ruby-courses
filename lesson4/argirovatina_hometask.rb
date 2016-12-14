@@ -2,7 +2,7 @@ class LazyHash < Hash
 
   def method_missing(method_name)
     key = get_correct_key(method_name)
-    self[key] = self[key].call if lazy?(key)
+    lazy?(key) ? self[key] = self[key].call : self[key]
   end
 
   def lazy?(key)
@@ -11,7 +11,8 @@ class LazyHash < Hash
   end
 
   def respond_to_missing?(method_name, include_private = false)
-    self.has_key? method_name || super
+    key = get_correct_key(method_name)
+    self.has_key? key || super
   end
 
   private
@@ -27,12 +28,13 @@ test_proc = proc { 2*2 }
 hash = LazyHash.new
 
 p hash['proc_key'] = test_proc # => #<Proc:0x007feec0887a00@/Users/tina/Betlab-ruby-courses/lesson4/argirovatina_hometask.rb:33>
-#p hash[:proc_key] = test_proc # => `method_missing': Keys proc_key as string and as symbol are present (RuntimeError)
-p hash.lazy?('proc_key') # => true
+p hash.lazy? 'proc_key' # => true
 p hash.proc_key # => 4
 p hash['proc_key'] # => 4
-p hash.lazy?('proc_key') # => false
-p hash.respond_to? :proc_key # => true
-p hash.proc_key1 # => `get_correct_key': Method proc_key1 is missing (RuntimeError)
+p hash.lazy? 'proc_key' # => false
+p hash.respond_to? 'proc_key' # => true
+#p hash.proc_key1 # => `get_correct_key': Method proc_key1 is missing (RuntimeError)
 hash[:my_key] = proc { 5 }
 p hash.my_key # => 5
+hash[:key_with_regular_value] = 6
+p hash.key_with_regular_value
