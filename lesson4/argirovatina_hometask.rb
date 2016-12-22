@@ -6,21 +6,24 @@ class LazyHash < Hash
   end
 
   def lazy?(key)
-    key = get_correct_key(key)
+    key = check_correct_key(key)
     self[key].respond_to? :call
   end
 
   def respond_to_missing?(method_name, include_private = false)
-    key = get_correct_key(method_name)
+    key = check_correct_key(method_name)
     self.has_key? key || super
   end
 
   private
 
   def get_correct_key(hash_key)
-    [hash_key.to_s, hash_key.to_sym].find { |key| self.has_key?(key) } || raise("Method #{hash_key} is missing")
+    check_correct_key(hash_key) || raise("Method #{hash_key} is missing")
   end
 
+  def check_correct_key(hash_key)
+    [hash_key.to_s, hash_key.to_sym].find { |key| self.has_key?(key) }
+  end
 end
 
 ########## EXAMPLES ###################
